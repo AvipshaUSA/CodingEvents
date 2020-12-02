@@ -1,48 +1,71 @@
-﻿
+﻿@using CodingEvents.Models
+
+<!--calling model. and this moder spelling start with lowercase m (model)-->
+
+@model List<Event>
 
 <h1>Family Events</h1>
 <p>
 
     <a asp-controller="Events" asp-action="AddEvents">Add Event</a> <!-- this will create a link to go to the AddEvent page-->
-   
+
 
 </p>
 <p> <a asp-controller="Events" asp-action="DeleteEvents">Delete Event</a> <!-- this will create a link to go to the AddEvent page--></p>
 
 
 
-@if (ViewBag.events.Count == 0)
+<!--if (ViewBag.events.Count == 0)-->
+
+
+@if (Model.Count == 0)
 {
     <p>No Events yet!!</p>
 }
 else
 {
-<table id="customers">
+    <table id="customers">
+        <tr>
+            <th>ID:</th>
+            <th> Name:</th>
+            <th> Description:</th>
+            <th> Date:</th>
+
+            <th>Contact Email</th>
+            <th>Event Location</th>
+            <th>Number Of Attendee</th>
+            <th>Register</th>
+            <th>Edit Event:</th>
+        </tr>
+
+      
+
+     
+        @foreach (var meeting in Model)
+        {
     <tr>
-        <th>ID:</th>
-        <th> Name:</th>
-        <th> Description:</th>
-        <th> Date:</th>
-        <th>Edit Event:</th>
+        <td>@meeting.Id</td>
+        <td>@meeting.Name</td>
+        <td>@meeting.Description</td>
+        <td>@meeting.Date</td>
+        <td>@meeting.ContactEmail</td>
+        <td>@meeting.EventLocation</td>
+        <td>@meeting.NumberOfAtendee</td>
+        <td>@meeting.Register</td>
+        <td>
+            <a asp-controller="Events" asp-action="Edit" asp-route-id="@meeting.Id">Edit Event</a>
+            @*<form method="post" action="/Events/Delete">
+                <input type="hidden" name="eventIds" value="@meeting.Id" />
+                <input type="submit" value="Delete" class="btn btn-danger">
+            </form>*@ @*// asp-route-id passes an {id?} parameter at the end of our route.*@
+        </td>
+
     </tr>
 
-    @foreach (var meeting in ViewBag.events)
-    {
-<tr>
-    <td>@meeting.Id</td>
-    <td>@meeting.Name</td>
-    <td>@meeting.Description</td>
-    <td>@meeting.Date</td>
-    <td><a asp-controller="Events" asp-action="Edit" asp-route-id="@meeting.Id">Edit Event</a></td> @*// asp-route-id passes an {id?} parameter at the end of our route.*@
-
-
-</tr>
-
-    }
-</table>
+            }
+    </table>
 }
 
 <!--Alternate way -- below code will create links which is create inside a different folder under shared/ModifyLayout.cshtml-->
 <!--Avipsha - another Layout partial link created -->
 <!--<p> <partial name="/Views/Shared/ModifyLayout.cshtml" /></p>-->
-

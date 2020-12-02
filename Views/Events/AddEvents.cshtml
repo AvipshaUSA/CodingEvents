@@ -1,18 +1,60 @@
 ﻿
+@using CodingEvents.ViewModel;
+
+@model AddEventviewModel; 
 
 <h1>Add Event</h1>
 
 <form method="post">
-    <input type="text" name="name" /> @*name 'name'should be same as the name constructor variable of event constructor of Event.cs class
-                                               public Event(string name, string description, string date) : this()*@
+    <div asp-controller="Events" asp-action="AddEvents" class="form-group">
+        <label asp-for="Name"></label>
 
-    <input type="text" name="description" /> @*name description shoulb be same as Event.cs classes description constructor name
-                                                   public Event(string name, string description, string date) : this().*@
-    
-    <input type="date" name="date" />
+        <input asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+
+
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <input asp-for="Description" />
+        <span asp-validation-for="Description"></span>
+    </div>
+
+
+    <div class="form-group">
+        <label asp-for="Date"></label>
+        <input type="date" asp-for="Date" />
+        <span asp-validation-for="Date"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ContactEmail"></label>
+        <input asp-for="ContactEmail" />
+        <span asp-validation-for="ContactEmail"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EventLocation"></label>
+        <input asp-for="EventLocation" />
+        <span asp-validation-for="EventLocation"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="NumberOfAtendee"></label>
+        <input asp-for="NumberOfAtendee" />
+        <span asp-validation-for="NumberOfAtendee"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Register"></label>
+        <input asp-for="Register" />
+        <span asp-validation-for="Register"></span>
+    </div>
+   
+
 
     <input type="Submit" value="Add Event!" />
-   
+
 
 </form>
 
