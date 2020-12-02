@@ -1,0 +1,26 @@
+﻿
+
+<h1>Add Event</h1>
+
+<form method="post">
+    <input type="text" name="name" /> @*name 'name'should be same as the name constructor variable of event constructor of Event.cs class
+                                               public Event(string name, string description, string date) : this()*@
+
+    <input type="text" name="description" /> @*name description shoulb be same as Event.cs classes description constructor name
+                                                   public Event(string name, string description, string date) : this().*@
+    
+    <input type="date" name="date" />
+
+    <input type="Submit" value="Add Event!" />
+   
+
+</form>
+
+<!--Avipsha - another Layout partial link created -->
+<!--<p> <partial name="/Views/Shared/ModifyLayout.cshtml" /></p> -->
+
+<p>
+
+    <a asp-controller="Events" asp-action="Index">Event List</a> <!--this will create a link to go to Event List page-->
+
+</p>
