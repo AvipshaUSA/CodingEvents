@@ -18,6 +18,7 @@ namespace CodingEvents.Models
         public int NumberOfAtendee { get; set; }
         public bool Register { get; set; }
         public bool IsTrue { get { return true; } }
+        public EventType Type { get; set; } // enum type
 
 
         public int Id { get; }

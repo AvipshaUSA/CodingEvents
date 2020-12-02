@@ -50,8 +50,13 @@
         <input asp-for="Register" />
         <span asp-validation-for="Register"></span>
     </div>
-   
 
+    <div class="form-group">
+        <label asp-for="Type">Event type</label>
+   
+        <select asp-for=" Type" asp-items="Model.EventTypes"></select>
+        <span asp-validation-for="NumberOfAtendee"></span>
+    </div>
 
     <input type="Submit" value="Add Event!" />
 
