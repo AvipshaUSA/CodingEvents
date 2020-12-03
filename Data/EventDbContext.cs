@@ -10,6 +10,7 @@ namespace CodingEvents.Data
     public class EventDbContext : DbContext  //Dbcontext is a class which we extended
     {
         public DbSet<Event> Events { get; set; }
+        public DbSet<EventCategory> Categories {get; set;}
 
         public EventDbContext(DbContextOptions<EventDbContext> options) : base(options) // extended constructor, also DbContextOptions is a object
         {
