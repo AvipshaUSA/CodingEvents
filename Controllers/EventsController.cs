@@ -16,21 +16,29 @@ namespace CodingEvents.Controllers
 
         //static private List<Event> Events = new List<Event>();
 
-        
+        private EventDbContext context;
+        public EventsController(EventDbContext dbContext)
+        {
+            context = dbContext;
+        }
+
         //GET: /<controller> /
 
         [HttpGet] // we want index only response to the get method on localhost 5001/events.
         public IActionResult Index()
         {
+            /*      List<Event> events = new List<Event>(EventData.GetAll());*/ // we deleted EventData.cs from Data. 
+            List<Event> events = context.Events.ToList();// created for EventDbcontext.cs 
 
-
-
-            //  ViewBag.events = EventData.GetAll();
-            //return View();
-
-            List<Event> events = new List<Event>(EventData.GetAll()); // in order to use this need to change Events/Index.cshtml
             return View(events);
         }
+        //  ViewBag.events = EventData.GetAll();
+        //return View();
+
+       
+
+        
+          
 
         [HttpGet]
         public IActionResult AddEvents() // this addEvents() action method going to responds to getRequest at the localhost 5001/addevents
@@ -62,7 +70,9 @@ namespace CodingEvents.Controllers
                     Register = addEventViewModel.Register,
                     Type = addEventViewModel.Type
                 };
-                EventData.Add(newEvent); // Add method from Data/Eventdata.cd has one argument. so here we pass new Event(name, description, date) as an argument.
+                /*EventData.Add(newEvent); */// Add method from Data/Eventdata.cd has one argument. so here we pass new Event(name, description, date) as an argument.
+                context.Events.Add(newEvent); //Add() method / keyword
+                context.SaveChanges(); // savechanges() method/keyword . it saves what we add.
 
                 return Redirect("/Events"); // redirect to action method
 
@@ -78,7 +88,8 @@ namespace CodingEvents.Controllers
 
         {
 
-            ViewBag.events = EventData.GetAll(); // we want to display the user what we have in list
+            /*  ViewBag.events = EventData.GetAll();*/ // we want to display the user what we have in list
+            ViewBag.events = context.Events.ToList(); // gonna do same as GetAll() whisch was in Data/EventData.cs now deleted
            return View();
           
         }
@@ -87,19 +98,29 @@ namespace CodingEvents.Controllers
         {
             foreach (var eventId in eventIds)
             {
-                EventData.Remove(eventId);
+                //EventData.Remove(eventId); //gonna do same as Removel() whisch was in Data/EventData.cs now deleted
+                Event theEvent = context.Events.Find(eventId);
+                context.Events.Remove(theEvent);
             }
+
+            context.SaveChanges(); //gonna save everything 
             return Redirect("/Events");
         }
 
-
+        // need to work on Edit
 
         [Route("/Events/Edit/{eventId}")] // this rout will take us to  the selected id no 
         public IActionResult Edit(int eventId)
         {
 
-            ViewBag.eventsDictionaryObj = EventData.GetById(eventId);// picking the value which is a class type List, corresponding to the Id.
-            ViewBag.title = "You are editing " + ViewBag.eventsDictionaryObj.Name + " (id= #" + ViewBag.eventsDictionaryObj.Id + ")"; 
+            /*ViewBag.eventsDictionaryObj = EventData.GetById(eventId);*/// picking the value which is a class type List, corresponding to the Id.
+         
+
+            ViewBag.eventsDictionaryObj = context.Events.Find(eventId);
+            ViewBag.title = "You are editing " + ViewBag.eventsDictionaryObj.Name + " (id= #" + ViewBag.eventsDictionaryObj.Id + ")";
+          
+        
+
             // controller code will go here
             return View();
         }
@@ -110,17 +131,20 @@ namespace CodingEvents.Controllers
         public IActionResult SubmitEditEventForm(int eventId, string name, string description, string date, string email, int numOfAttendee, string location)
         {
 
-            Event updated = EventData.GetById(eventId);  // Event is class type list and a Value od Events dictionary. 
-                                                            //so to get that Event List value which is acctualy a class type ,we need to create an object of Event Class.
+            /*Event updated = EventData.GetById(eventId);*/  // Event is class type list and a Value od Events dictionary. 
+                                                             //so to get that Event List value which is acctualy a class type ,we need to create an object of Event Class.
+            Event updated = context.Events.Find(eventId);
 
             //updating the fields
             updated.Name = name;
             updated.Description = description;
-            updated.ContactEmail = email; 
+            updated.ContactEmail = email;
             updated.NumberOfAtendee = numOfAttendee;
             updated.EventLocation = location;
             updated.Date = date;
             // controller code will go here
+
+            context.SaveChanges();
             return Redirect("/Events");
         }
 
