@@ -21,14 +21,14 @@ namespace CodingEvents.Models
         public EventType Type { get; set; } // enum type
 
 
-        public int Id { get; }
-        private static int nextId = 1;
+        public int Id { get; set; }
+      //  private static int nextId = 1;  no longer need this incrementation because mapper creating db and take care od the id through primary key
 
 
         public Event()
         {
-            Id = nextId;
-            nextId++;
+            //Id = nextId; dbms gonna take care of this ids
+            //nextId++;
         }
 
         public Event(string name, string description, string date, string contactEmail, string eventLocation, int numberOfAtendee, bool register) : this()// constructor
