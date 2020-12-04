@@ -74,7 +74,7 @@ namespace CodingEvents.Controllers
                 context.Events.Add(newEvent); //Add() method / keyword
                 context.SaveChanges(); // savechanges() method/keyword . it saves what we add.
 
-                return Redirect("/EventCategory"); // redirect to action method
+                return Redirect("/Events"); // redirect to action method
 
             }
 
