@@ -10,13 +10,9 @@
 @model List<EventCategory>
 
 <h1>Event Category</h1>
-<p>
 
-    <a asp-controller="Events" asp-action="AddEvents">Add Event</a> <!-- this will create a link to go to the AddEvent page-->
-
-
-</p>
-<p> <a asp-controller="Events" asp-action="DeleteEvents">Delete Event</a> <!-- this will create a link to go to the AddEvent page--></p>
+<p> <a asp-controller="EventCategory" asp-action="DeleteCategory">Delete Category</a> <!-- this will create a link to go to the AddEvent page--></p>
+<a asp-controller="EventCategory" asp-action="Create">category Add</a>
 
 
 

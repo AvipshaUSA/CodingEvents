@@ -4,10 +4,13 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 
-    <!--welcome page-->
-    <p> <partial name="/Views/Shared/ModifyLayout.cshtml" /></p>
-    <p> <a asp-controller="EventCategory" asp-action="index">Event Category</a> <!-- this will create a link to go to the AddEvent page--></p>
+
+    <!--welcome Home page-->
+    <p> <partial name="/Views/Shared/ModifyLayout.cshtml" /></p> <!--this link created inside shared/ModifyLayout.cshtml-->
+    <p> <a asp-controller="EventCategory" asp-action="index">Event Category List</a> <!-- this will create a link to go to the AddEvent page--></p>
+
+   <p> <a asp-controller="EventCategory" asp-action="Create">Add Category</a></p> @*add link look 19.5.3*@
+   <p> <a asp-controller="EventCategory" asp-action="Index">Delete Category</a></p> <!--this will create a link to go to Event List page-->
 </div>
 

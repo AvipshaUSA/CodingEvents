@@ -86,3 +86,5 @@ C:\Users\Pradip\Desktop\lc101\C#\MVC\CodingEvents\bin\Debug\netcoreapp3.1\runtim
 C:\Users\Pradip\Desktop\lc101\C#\MVC\CodingEvents\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\Pradip\Desktop\lc101\C#\MVC\CodingEvents\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Pradip\Desktop\lc101\C#\MVC\CodingEvents\obj\Debug\netcoreapp3.1\Razor\Views\EventCategory\Index.cshtml.g.cs
+C:\Users\Pradip\Desktop\lc101\C#\MVC\CodingEvents\obj\Debug\netcoreapp3.1\Razor\Views\EventCategory\Create.cshtml.g.cs
+C:\Users\Pradip\Desktop\lc101\C#\MVC\CodingEvents\obj\Debug\netcoreapp3.1\Razor\Views\EventCategory\deleteCategory.cshtml.g.cs
