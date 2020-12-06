@@ -51,10 +51,17 @@
         <span asp-validation-for="Register"></span>
     </div>
 
+    @*<div class="form-group">
+            <label asp-for="Type">Event type</label>
+
+            <select asp-for=" Type" asp-items="Model.EventTypes"></select>   // this comment out portion is removed by CategoryId
+            <span asp-validation-for="NumberOfAtendee"></span>
+        </div>*@
+
     <div class="form-group">
-        <label asp-for="Type">Event type</label>
-   
-        <select asp-for=" Type" asp-items="Model.EventTypes"></select>
+        <label asp-for="CategoryId">Event type</label>
+
+        <select asp-for=" CategoryId" asp-items="Model.Categories"></select>   // List of options drop dwon 
         <span asp-validation-for="NumberOfAtendee"></span>
     </div>
 

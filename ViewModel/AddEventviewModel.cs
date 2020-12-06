@@ -40,21 +40,39 @@ namespace CodingEvents.ViewModel
 
         public bool IsTrue { get { return true; } }
 
-        public EventType Type { get; set; } //enum
+        //public EventType Type { get; set; } //enum // replace this with CategoryId
 
-        public List<SelectListItem> EventTypes { get; set; } = new List<SelectListItem>
+        [Required(ErrorMessage ="Category is required")]
+        public int CategoryId { get; set; }
+        public List<SelectListItem> Categories { get; set; }  //this Line 46 replace line 48-60
 
-        // <option Value ='0'>Conference</option> 
-       //  < option Value ='0'>meetup</option>
+       // public List<SelectListItem> EventTypes { get; set; } = new List<SelectListItem>
+
+       // // <option Value ='0'>Conference</option> 
+       ////  < option Value ='0'>meetup</option>
+       // {
+
+       // new SelectListItem(EventType.Conference.ToString(), ((int) EventType.Conference).ToString()),
+       // new SelectListItem(EventType.Meetup.ToString(), ((int)EventType.Meetup).ToString()),
+       // new SelectListItem(EventType.Social.ToString(), ((int)EventType.Social).ToString()),
+       // new SelectListItem(EventType.Workshop.ToString(), ((int)EventType.Workshop).ToString())
+
+
+       // };
+
+        public AddEventviewModel(List<EventCategory> categories)
+
         {
+            Categories = new List<SelectListItem>();
 
-        new SelectListItem(EventType.Conference.ToString(), ((int) EventType.Conference).ToString()),
-        new SelectListItem(EventType.Meetup.ToString(), ((int)EventType.Meetup).ToString()),
-        new SelectListItem(EventType.Social.ToString(), ((int)EventType.Social).ToString()),
-        new SelectListItem(EventType.Workshop.ToString(), ((int)EventType.Workshop).ToString())
+            foreach(var category in categories)
+            {
+                Categories.Add(new SelectListItem { Value = category.Id.ToString(), Text= category.Name });
 
+            };
+        }
 
-        };
+        public AddEventviewModel() { } // Empty Constructor
         
     }
 }

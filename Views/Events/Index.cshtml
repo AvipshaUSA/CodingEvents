@@ -52,8 +52,9 @@ else
         <td>@meeting.ContactEmail</td>
         <td>@meeting.EventLocation</td>
         <td>@meeting.NumberOfAtendee</td>
-        <td>@meeting.Register</td>
-        <td>@meeting.Type</td>
+
+        <td>@meeting.Register</td>        @*// we do not have Type anymore Instead we have Category*@
+        @*<td>@meeting.Type</td>*@
         <td>
             <a asp-controller="Events" asp-action="Edit" asp-route-id="@meeting.Id">Edit Event</a>
             @*<form method="post" action="/Events/Delete">

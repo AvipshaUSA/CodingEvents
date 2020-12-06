@@ -43,7 +43,7 @@ namespace CodingEvents.Controllers
         [HttpGet]
         public IActionResult AddEvents() // this addEvents() action method going to responds to getRequest at the localhost 5001/addevents
         {
-
+            List<EventCategory> categories = context.Categories.ToList();
             AddEventviewModel addEventViewModel = new AddEventviewModel(); // creating an instance of the class AddEventviewModel.cs
             return View(addEventViewModel);
         }
@@ -59,6 +59,8 @@ namespace CodingEvents.Controllers
 
             if (ModelState.IsValid)
             {
+
+                EventCategory thecategory = context.Categories.Find(addEventViewModel.CategoryId);
                 Event newEvent = new Event
                 {
                     Name = addEventViewModel.Name,
@@ -68,7 +70,9 @@ namespace CodingEvents.Controllers
                     EventLocation = addEventViewModel.EventLocation,
                     NumberOfAtendee = addEventViewModel.NumberOfAtendee,
                     Register = addEventViewModel.Register,
-                    Type = addEventViewModel.Type
+                    //Type = addEventViewModel.Type // this line removed 
+                    Category = thecategory   // And we nolonger using Enum class EventType. so we are Deleting it. It is no more Models/EventType.cs
+
                 };
                 /*EventData.Add(newEvent); */// Add method from Data/Eventdata.cd has one argument. so here we pass new Event(name, description, date) as an argument.
                 context.Events.Add(newEvent); //Add() method / keyword

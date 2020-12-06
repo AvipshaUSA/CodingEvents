@@ -18,7 +18,10 @@ namespace CodingEvents.Models
         public int NumberOfAtendee { get; set; }
         public bool Register { get; set; }
         public bool IsTrue { get { return true; } }
-        public EventType Type { get; set; } // enum type
+        //public EventType Type { get; set; } // enum type 
+
+        public EventCategory Category { get; set; }
+        public int CategoryId { get; set; }
 
 
         public int Id { get; set; }
@@ -47,5 +50,7 @@ namespace CodingEvents.Models
         {
             return base.ToString();
         }
+
+
     }
 }
