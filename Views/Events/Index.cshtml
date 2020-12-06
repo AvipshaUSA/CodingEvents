@@ -36,7 +36,7 @@ else
             <th>Number Of Attendee</th>
             <th>Register</th>
             <th>Edit Event:</th>
-            <th>Type</th>
+            <th>Category</th> @*// Type removed*@
         </tr>
 
       
@@ -55,6 +55,8 @@ else
 
         <td>@meeting.Register</td>        @*// we do not have Type anymore Instead we have Category*@
         @*<td>@meeting.Type</td>*@
+        <td>@meeting.Category.Name</td> <!-Category is accesskey=" full object so we need to maintion Name or Propery"--->
+
         <td>
             <a asp-controller="Events" asp-action="Edit" asp-route-id="@meeting.Id">Edit Event</a>
             @*<form method="post" action="/Events/Delete">

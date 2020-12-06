@@ -8,6 +8,7 @@ using CodingEvents.Models;  // used because Event data type is list below is in 
 using Microsoft.VisualBasic.CompilerServices;
 using CodingEvents.Data; // used because we need to import EventData from Data/EventData.cs
 using CodingEvents.ViewModel; // used because we need to import AddEventviewModel.cs from DataModel/AddEventviewModel.cs.cs
+using System.Data.Entity;
 
 namespace CodingEvents.Controllers
 {
@@ -28,7 +29,9 @@ namespace CodingEvents.Controllers
         public IActionResult Index()
         {
             /*      List<Event> events = new List<Event>(EventData.GetAll());*/ // we deleted EventData.cs from Data. 
-            List<Event> events = context.Events.ToList();// created for EventDbcontext.cs 
+            List<Event> events = context.Events
+                .Include(e => e.Category)
+                .ToList();// created for EventDbcontext.cs 
 
             return View(events);
         }
