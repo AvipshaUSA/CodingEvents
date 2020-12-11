@@ -34,7 +34,7 @@ namespace CodingEvents.Models
             //nextId++;
         }
 
-        public Event(string name, string description, string date, string contactEmail, string eventLocation, int numberOfAtendee, bool register, EventCategory category) : this()// constructor
+        public Event(string name, string description, string date, string contactEmail, string eventLocation, int numberOfAtendee, bool register) // constructor
         {
             Name = name;
             Description = description;
@@ -43,13 +43,24 @@ namespace CodingEvents.Models
             EventLocation = eventLocation;
             NumberOfAtendee = numberOfAtendee;
             Register = register;
-            Category = category;
+            //Category = category;
 
         }
 
         public override string ToString()
         {
-            return base.ToString();
+            return Name;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Event @event &&
+                   Id == @event.Id;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id);
         }
 
 

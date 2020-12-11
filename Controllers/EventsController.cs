@@ -26,22 +26,33 @@ namespace CodingEvents.Controllers
 
         //GET: /<controller> /
 
-        [HttpGet] // we want index only response to the get method on localhost 5001/events.
+        //[HttpGet] // we want index only response to the get method on localhost 5001/events.
+        //public IActionResult Index()
+        //{
+
+        //    List<Event> events = context.Events
+        //        .Include(e => e.Category)
+        //        .ToList();// created for EventDbcontext.cs 
+
+
+        //    Console.WriteLine(events.Count);
+        //    return View(events);
+        //}
+
         public IActionResult Index()
         {
-          
             List<Event> events = context.Events
                 .Include(e => e.Category)
-                .ToList();// created for EventDbcontext.cs 
+                .ToList();
 
             return View(events);
         }
-       
 
-       
 
-        
-          
+
+
+
+
 
         [HttpGet]
         public IActionResult AddEvents() // this addEvents() action method going to responds to getRequest at the localhost 5001/addevents
@@ -69,14 +80,16 @@ namespace CodingEvents.Controllers
                     EventLocation = addEventViewModel.EventLocation,
                     NumberOfAtendee = addEventViewModel.NumberOfAtendee,
                     Register = addEventViewModel.Register,
-                    //Type = addEventViewModel.Type // this line removed 
-                    Category = thecategory   // And we nolonger using Enum class EventType. so we are Deleting it. It is no more Models/EventType.cs
+                    
+                    Category = thecategory // And we nolonger using Enum class EventType. so we are Deleting it. It is no more Models/EventType.cs
 
 
                 };
 
                 Console.WriteLine(newEvent.Category.Name);
-                /*EventData.Add(newEvent); */// Add method from Data/Eventdata.cd has one argument. so here we pass new Event(name, description, date) as an argument.
+
+                Console.WriteLine(newEvent.Category.Id);
+
                 context.Events.Add(newEvent); //Add() method / keyword
                 context.SaveChanges(); // savechanges() method/keyword . it saves what we add.
 
@@ -94,22 +107,39 @@ namespace CodingEvents.Controllers
 
         {
 
-            /*  ViewBag.events = EventData.GetAll();*/ // we want to display the user what we have in list
-            ViewBag.events = context.Events.ToList(); // gonna do same as GetAll() whisch was in Data/EventData.cs now deleted
-           return View();
-          
+
+            // ViewBag.events = context.Events.ToList(); 
+            //return View();
+            ViewBag.events = context.Events.ToList();
+
+            return View();
+
         }
+
+
+
         [HttpPost]
         public IActionResult DeleteEvents(int[] eventIds) // create method in the same name of above to post the delete.
         {
-            foreach (var eventId in eventIds)
+            //foreach (var eventId in eventIds)
+            //{
+            //    //EventData.Remove(eventId); //gonna do same as Removel() whisch was in Data/EventData.cs now deleted
+            //    Event theEvent = context.Events.Find(eventId);
+            //    context.Events.Remove(theEvent);
+            //}
+
+            //context.SaveChanges(); //gonna save everything 
+            //return Redirect("/Events");
+
+
+            foreach (int eventId in eventIds)
             {
-                //EventData.Remove(eventId); //gonna do same as Removel() whisch was in Data/EventData.cs now deleted
                 Event theEvent = context.Events.Find(eventId);
                 context.Events.Remove(theEvent);
             }
 
-            context.SaveChanges(); //gonna save everything 
+            context.SaveChanges();
+
             return Redirect("/Events");
         }
 

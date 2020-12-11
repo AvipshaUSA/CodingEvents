@@ -13,16 +13,17 @@ namespace CodingEvents.Models
         
     
 
-        public EventCategory()
-        {
-
-        }
 
         public EventCategory(string name)
         {
             Name = name;
         }
 
-        
+
+        public EventCategory()
+        {
+
+        }
+
     }
 }
