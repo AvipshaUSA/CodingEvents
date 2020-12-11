@@ -1,14 +1,15 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+
 using CodingEvents.Models;  // used because Event data type is list below is in different folder. so we import.
-using Microsoft.VisualBasic.CompilerServices;
+
 using CodingEvents.Data; // used because we need to import EventData from Data/EventData.cs
 using CodingEvents.ViewModel; // used because we need to import AddEventviewModel.cs from DataModel/AddEventviewModel.cs.cs
 using System.Data.Entity;
+using System;
 
 namespace CodingEvents.Controllers
 {
@@ -28,15 +29,14 @@ namespace CodingEvents.Controllers
         [HttpGet] // we want index only response to the get method on localhost 5001/events.
         public IActionResult Index()
         {
-            /*      List<Event> events = new List<Event>(EventData.GetAll());*/ // we deleted EventData.cs from Data. 
+          
             List<Event> events = context.Events
                 .Include(e => e.Category)
                 .ToList();// created for EventDbcontext.cs 
 
             return View(events);
         }
-        //  ViewBag.events = EventData.GetAll();
-        //return View();
+       
 
        
 
@@ -47,16 +47,12 @@ namespace CodingEvents.Controllers
         public IActionResult AddEvents() // this addEvents() action method going to responds to getRequest at the localhost 5001/addevents
         {
             List<EventCategory> categories = context.Categories.ToList();
-            AddEventviewModel addEventViewModel = new AddEventviewModel(); // creating an instance of the class AddEventviewModel.cs
+            AddEventviewModel addEventViewModel = new AddEventviewModel(categories); // creating an instance of the class AddEventviewModel.cs
             return View(addEventViewModel);
         }
 
         [HttpPost]
-        // [Route("/Events/AddEvents")] we added this httpPost rout inside Events.AddEvent <div> as asp-controller="Events" asp-controller = "AddEvents"
-        //public IActionResult NeWevent(Event newEvent) // this argument names are comming from Events/Addevent.cshtml 's.
-        //we declared the names of input as name and description
-        //public IActionResult NeWevent(Event newEvent)
-        // public IActionResult AddEvent(Event newEvent)// /Event/Add..same method name as httpGt. HttpGet Add retrieve the View form and httpPost responds to processing the view form
+      
         public IActionResult AddEvents(AddEventviewModel addEventViewModel)
         {
 
@@ -76,7 +72,10 @@ namespace CodingEvents.Controllers
                     //Type = addEventViewModel.Type // this line removed 
                     Category = thecategory   // And we nolonger using Enum class EventType. so we are Deleting it. It is no more Models/EventType.cs
 
+
                 };
+
+                Console.WriteLine(newEvent.Category.Name);
                 /*EventData.Add(newEvent); */// Add method from Data/Eventdata.cd has one argument. so here we pass new Event(name, description, date) as an argument.
                 context.Events.Add(newEvent); //Add() method / keyword
                 context.SaveChanges(); // savechanges() method/keyword . it saves what we add.

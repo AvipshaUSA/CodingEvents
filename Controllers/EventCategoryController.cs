@@ -28,6 +28,8 @@ namespace CodingEvents.Controllers
             return View(categories);
         }
 
+
+
         [HttpGet]
 
         public IActionResult Create()
@@ -37,6 +39,8 @@ namespace CodingEvents.Controllers
             return View(addEventCategoryViewModel);
 
         }
+
+
 
 
     
@@ -58,6 +62,8 @@ namespace CodingEvents.Controllers
             return View(addEventCategoryViewModel);
         }
 
+
+
         [HttpGet]
         public IActionResult DeleteCategory()
 
@@ -68,6 +74,9 @@ namespace CodingEvents.Controllers
             return View();
 
         }
+
+
+
         [HttpPost]
         public IActionResult DeleteCategory(int[] eventIds) // create method in the same name of above to post the delete.
         {

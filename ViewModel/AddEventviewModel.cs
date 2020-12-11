@@ -65,11 +65,16 @@ namespace CodingEvents.ViewModel
         {
             Categories = new List<SelectListItem>();
 
-            foreach(var category in categories)
+            foreach (var category in categories)
             {
-                Categories.Add(new SelectListItem { Value = category.Id.ToString(), Text= category.Name });
-
-            };
+                Categories.Add(
+                    new SelectListItem
+                    {
+                        Value = category.Id.ToString(),
+                        Text = category.Name.ToString()
+                    }
+                ); ;
+            }
         }
 
         public AddEventviewModel() { } // Empty Constructor
