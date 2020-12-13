@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CodingEvents.Migrations
 {
     [DbContext(typeof(EventDbContext))]
-    [Migration("20201203224201_secondMigration")]
-    partial class secondMigration
+    [Migration("20201213193448_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -22,6 +22,9 @@ namespace CodingEvents.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("ContactEmail")
@@ -45,10 +48,9 @@ namespace CodingEvents.Migrations
                     b.Property<bool>("Register")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Events");
                 });
@@ -65,6 +67,15 @@ namespace CodingEvents.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("CodingEvents.Models.Event", b =>
+                {
+                    b.HasOne("CodingEvents.Models.EventCategory", "Category")
+                        .WithMany("events")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

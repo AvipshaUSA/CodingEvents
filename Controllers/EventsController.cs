@@ -8,8 +8,9 @@ using CodingEvents.Models;  // used because Event data type is list below is in 
 
 using CodingEvents.Data; // used because we need to import EventData from Data/EventData.cs
 using CodingEvents.ViewModel; // used because we need to import AddEventviewModel.cs from DataModel/AddEventviewModel.cs.cs
-using System.Data.Entity;
+
 using System;
+using Microsoft.EntityFrameworkCore;
 
 namespace CodingEvents.Controllers
 {
