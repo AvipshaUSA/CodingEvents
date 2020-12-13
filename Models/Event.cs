@@ -18,20 +18,22 @@ namespace CodingEvents.Models
         public int NumberOfAtendee { get; set; }
         public bool Register { get; set; }
         public bool IsTrue { get { return true; } }
-        public EventType Type { get; set; } // enum type
+        //public EventType Type { get; set; } // enum type
+
+        public EventCategory Category { get; set; }
+        public int CategoryId { get; set; }
 
 
         public int Id { get; set; }
-      //  private static int nextId = 1;  no longer need this incrementation because mapper creating db and take care od the id through primary key
+      
 
 
         public Event()
         {
-            //Id = nextId; dbms gonna take care of this ids
-            //nextId++;
+           
         }
 
-        public Event(string name, string description, string date, string contactEmail, string eventLocation, int numberOfAtendee, bool register) : this()// constructor
+        public Event(string name, string description, string date, string contactEmail, string eventLocation, int numberOfAtendee, bool register) // constructor
         {
             Name = name;
             Description = description;
@@ -46,6 +48,17 @@ namespace CodingEvents.Models
         public override string ToString()
         {
             return base.ToString();
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Event @event &&
+                   Id == @event.Id;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id);
         }
     }
 }

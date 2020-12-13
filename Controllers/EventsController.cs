@@ -41,24 +41,22 @@ namespace CodingEvents.Controllers
           
 
         [HttpGet]
-        public IActionResult AddEvents() // this addEvents() action method going to responds to getRequest at the localhost 5001/addevents
+        public IActionResult AddEvents() 
         {
+            List<EventCategory> categories = context.Categories.ToList();
+            AddEventviewModel addEventViewModel = new AddEventviewModel(categories); // creating an instance of the class AddEventviewModel.cs
 
-            AddEventviewModel addEventViewModel = new AddEventviewModel(); // creating an instance of the class AddEventviewModel.cs
             return View(addEventViewModel);
         }
 
         [HttpPost]
-        // [Route("/Events/AddEvents")] we added this httpPost rout inside Events.AddEvent <div> as asp-controller="Events" asp-controller = "AddEvents"
-        //public IActionResult NeWevent(Event newEvent) // this argument names are comming from Events/Addevent.cshtml 's.
-        //we declared the names of input as name and description
-        //public IActionResult NeWevent(Event newEvent)
-        // public IActionResult AddEvent(Event newEvent)// /Event/Add..same method name as httpGt. HttpGet Add retrieve the View form and httpPost responds to processing the view form
+       
         public IActionResult AddEvents(AddEventviewModel addEventViewModel)
         {
 
             if (ModelState.IsValid)
             {
+                EventCategory theCategory = context.Categories.Find(addEventViewModel.CategoryId);
                 Event newEvent = new Event
                 {
                     Name = addEventViewModel.Name,
@@ -68,7 +66,7 @@ namespace CodingEvents.Controllers
                     EventLocation = addEventViewModel.EventLocation,
                     NumberOfAtendee = addEventViewModel.NumberOfAtendee,
                     Register = addEventViewModel.Register,
-                    Type = addEventViewModel.Type
+                    Category = theCategory
                 };
                 /*EventData.Add(newEvent); */// Add method from Data/Eventdata.cd has one argument. so here we pass new Event(name, description, date) as an argument.
                 context.Events.Add(newEvent); //Add() method / keyword
