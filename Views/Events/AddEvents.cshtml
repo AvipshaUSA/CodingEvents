@@ -5,8 +5,8 @@
 
 <h1>Add Event</h1>
 
-<form method="post">
-    <div asp-controller="Events" asp-action="AddEvents" class="form-group">
+<form method="post" asp-controller="Events" asp-action="AddEvents">
+    <div class="form-group">
         <label asp-for="Name"></label>
 
         <input asp-for="Name" />

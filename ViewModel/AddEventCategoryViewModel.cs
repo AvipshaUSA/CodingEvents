@@ -12,5 +12,9 @@ namespace CodingEvents.ViewModel
         [Required(ErrorMessage = "Name is required.")]
         [StringLength(50, MinimumLength = 3, ErrorMessage = "Name must be 3 and 50 charecters.")]
         public string Name { get; set; }
+
+        
     }
+
+    
 }

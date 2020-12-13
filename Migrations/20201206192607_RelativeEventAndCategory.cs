@@ -16,11 +16,11 @@ namespace CodingEvents.Migrations
                 nullable: false,
                 defaultValue: 0);
 
-            //migrationBuilder.AddColumn<int>(
-            //    name: "CategoryId",
-            //    table: "Categories",
-            //    nullable: false,
-            //    defaultValue: 0);
+            migrationBuilder.AddColumn<int>(
+                name: "CategoryId",
+                table: "Categories",
+                nullable: false,
+                defaultValue: 0);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Events_CategoryId",
@@ -38,32 +38,9 @@ namespace CodingEvents.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            //migrationBuilder.DropForeignKey(
-            //    name: "FK_Events_Categories_CategoryId",
-            //    table: "Events");
-
-            //migrationBuilder.DropIndex(
-            //    name: "IX_Events_CategoryId",
-            //    table: "Events");
-
-            //migrationBuilder.DropColumn(
-            //    name: "CategoryId",
-            //    table: "Events");
-
-            //migrationBuilder.DropColumn(
-            //    name: "CategoryId",
-            //    table: "Categories");
-
-            //migrationBuilder.AddColumn<int>(
-            //    name: "Type",
-            //    table: "Events",
-            //    type: "int",
-            //    nullable: false,
-            //    defaultValue: 0);
-
             migrationBuilder.DropForeignKey(
-               name: "FK_Events_Categories_CategoryId",
-               table: "Events");
+                name: "FK_Events_Categories_CategoryId",
+                table: "Events");
 
             migrationBuilder.DropIndex(
                 name: "IX_Events_CategoryId",
@@ -72,6 +49,10 @@ namespace CodingEvents.Migrations
             migrationBuilder.DropColumn(
                 name: "CategoryId",
                 table: "Events");
+
+            migrationBuilder.DropColumn(
+                name: "CategoryId",
+                table: "Categories");
 
             migrationBuilder.AddColumn<int>(
                 name: "Type",

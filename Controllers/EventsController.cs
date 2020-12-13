@@ -54,10 +54,10 @@ namespace CodingEvents.Controllers
 
 
 
-        [HttpGet]
+        //[HttpGet]
         public IActionResult AddEvents() // this addEvents() action method going to responds to getRequest at the localhost 5001/addevents
         {
-            List<EventCategory> categories = context.Categories.ToList();
+           List<EventCategory> categories = context.Categories.ToList();
             AddEventviewModel addEventViewModel = new AddEventviewModel(categories); // creating an instance of the class AddEventviewModel.cs
             return View(addEventViewModel);
         }
